@@ -106,4 +106,20 @@ sentinel doctor
 - The Gmail flow reads the latest messages first by sorting on `internalDate`.
 - If you want this to run on a schedule, we can add a small scheduler or Windows Task Scheduler setup next.
 
+## Release
+
+Build locally:
+
+```bash
+python -m build
+```
+
+Publish is handled by the GitHub Actions workflow on tagged releases (`v*.*.*`).
+
+After the first public release, users can install it with:
+
+```bash
+pip install sentinel
+```
+
 

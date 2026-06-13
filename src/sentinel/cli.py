@@ -41,11 +41,7 @@ def build_parser() -> argparse.ArgumentParser:
         description="Run the Sentinel placement email workflow from the command line.",
         parents=[common],
     )
-    parser.add_argument(
-        "--version",
-        action="version",
-        version=f"%(prog)s {__version__}",
-    )
+    parser.add_argument("--version", action="version", version=f"%(prog)s {__version__}")
 
     subparsers = parser.add_subparsers(dest="command")
 
@@ -61,12 +57,7 @@ def build_parser() -> argparse.ArgumentParser:
         help="Keep running and execute the workflow on a fixed interval.",
         parents=[common],
     )
-    daemon_parser.add_argument(
-        "--interval-hours",
-        type=int,
-        default=3,
-        help="Hours between automatic runs.",
-    )
+    daemon_parser.add_argument("--interval-hours", type=int, default=3, help="Hours between automatic runs.")
     daemon_parser.set_defaults(func=_run_forever)
 
     doctor_parser = subparsers.add_parser(
@@ -94,11 +85,7 @@ def main(argv: Sequence[str] | None = None) -> int:
 def _add_common_run_arguments(parser: argparse.ArgumentParser) -> None:
     parser.add_argument("--days-back", type=int, default=7, help="Only inspect messages newer than this many days.")
     parser.add_argument("--dry-run", action="store_true", help="Run the workflow without writing to Google Sheets.")
-    parser.add_argument(
-        "--json",
-        action="store_true",
-        help="Print the result rows as JSON instead of human-readable text.",
-    )
+    parser.add_argument("--json", action="store_true", help="Print the result rows as JSON instead of text.")
 
 
 def _default_dispatch(args: argparse.Namespace) -> int:
@@ -235,3 +222,4 @@ def _print_rows(rows, *, json_output: bool) -> None:
 
 if __name__ == "__main__":
     raise SystemExit(main(sys.argv[1:]))
+
