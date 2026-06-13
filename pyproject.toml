@@ -6,8 +6,22 @@ build-backend = "setuptools.build_meta"
 name = "sentinel"
 version = "0.1.0"
 description = "CrewAI-based agent that triages placement emails, researches recruiters, and writes rows to Google Sheets."
-readme = "README.md"
+readme = { file = "README.md", content-type = "text/markdown" }
 requires-python = ">=3.10,<3.14"
+keywords = ["cli", "gmail", "google-sheets", "crewai", "automation"]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Environment :: Console",
+  "Intended Audience :: End Users/Desktop",
+  "License :: OSI Approved :: MIT License",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "Topic :: Office/Business",
+  "Topic :: Utilities",
+]
 dependencies = [
   "beautifulsoup4>=4.12.3",
   "crewai>=1.14.1",

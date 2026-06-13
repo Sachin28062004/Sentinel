@@ -20,6 +20,7 @@ except ModuleNotFoundError:
     build = None
 
 from .models import EmailRecord
+from .storage import ensure_private_directory, ensure_private_file
 
 
 class GmailService:
@@ -45,7 +46,9 @@ class GmailService:
             else:
                 flow = InstalledAppFlow.from_client_secrets_file(str(self.credentials_file), self.scopes)
                 creds = flow.run_local_server(port=0)
+            ensure_private_directory(self.token_file.parent)
             self.token_file.write_text(creds.to_json(), encoding="utf-8")
+            ensure_private_file(self.token_file)
         return creds
 
     @property

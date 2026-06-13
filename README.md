@@ -38,9 +38,21 @@ py -3.12 -m venv .venv
 pip install -e .
 ```
 
-### 2. Configure environment
+### 2. Run setup
 
-Copy `.env.example` to `.env` and fill in the values.
+Run the CLI once and follow the onboarding prompts:
+
+```bash
+sentinel
+```
+
+Or start it directly:
+
+```bash
+sentinel setup
+```
+
+Sentinel stores its private config, token, and state files under your user profile by default, not in the project folder. That keeps one user from accidentally reusing another user's credentials.
 
 ### 3. Google Cloud setup
 
@@ -58,11 +70,36 @@ Create a tab with headers matching the row schema in `sentinel/sheets_service.py
 sentinel
 ```
 
+The default command is `run` after setup is complete, so these are equivalent:
+
+```bash
+sentinel
+sentinel run
+```
+
 ### Run automatically every 3 hours
 
 ```bash
-sentinel --daemon --interval-hours 3
+sentinel daemon --interval-hours 3
 ```
+
+### Dry run
+
+```bash
+sentinel run --dry-run
+```
+
+### Check local setup
+
+```bash
+sentinel doctor
+```
+
+### Security notes
+
+- OAuth tokens and processed-message state live in your private Sentinel directory, usually `~/.sentinel`.
+- If you want separate data isolation on a shared machine, set `SENTINEL_PROFILE` before setup.
+- Do not commit your OAuth client file, token file, or private `.env` file.
 
 ## Notes
 

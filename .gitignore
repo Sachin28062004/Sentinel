@@ -13,4 +13,4 @@ dist/
 token.json
 credentials.json
 .state/
-
+.sentinel/
