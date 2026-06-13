@@ -39,6 +39,11 @@ dependencies = [
 sentinel = "sentinel.cli:main"
 placement-agent = "sentinel.cli:main"
 
+[project.urls]
+Homepage = "https://github.com/Sachin28062004/Sentinel"
+Repository = "https://github.com/Sachin28062004/Sentinel"
+Issues = "https://github.com/Sachin28062004/Sentinel/issues"
+
 [tool.setuptools]
 package-dir = {"" = "src"}
 
