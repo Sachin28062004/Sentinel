@@ -1,0 +1,33 @@
+name: Branch Created
+
+on:
+  create:
+
+jobs:
+  info:
+    if: github.event.ref_type == 'branch'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Show branch creation
+        run: echo "Branch created: ${{ github.event.ref }}"
+
+  test:
+    if: github.event.ref_type == 'branch'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.ref }}
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: python -m pip install --upgrade pip setuptools wheel
+
+      - name: Run tests
+        run: python -m unittest discover -s tests
+

@@ -122,4 +122,13 @@ After the first public release, users can install it with:
 pip install sentinel
 ```
 
+## Branch Protection
 
+To prevent direct pushes to `main`, enable GitHub branch protection on the repository:
+
+- Require pull request reviews before merging
+- Require status checks to pass before merging
+- Restrict who can push to `main`
+- Optionally require linear history
+
+The workflows in `.github/workflows/` will run on pull requests, pushes to `main`, and new branch creation.
