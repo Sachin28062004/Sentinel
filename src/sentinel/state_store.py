@@ -3,6 +3,8 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
+from .storage import ensure_private_directory, ensure_private_file
+
 
 class StateStore:
     def __init__(self, path: Path) -> None:
@@ -18,7 +20,7 @@ class StateStore:
         return set(data.get("seen_message_ids", []))
 
     def save_seen_message_ids(self, message_ids: set[str]) -> None:
-        self.path.parent.mkdir(parents=True, exist_ok=True)
+        ensure_private_directory(self.path.parent)
         payload = {"seen_message_ids": sorted(message_ids)}
         self.path.write_text(json.dumps(payload, indent=2), encoding="utf-8")
-
+        ensure_private_file(self.path)

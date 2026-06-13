@@ -4,6 +4,7 @@ import sys
 import tempfile
 import unittest
 from pathlib import Path
+from unittest.mock import patch
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
 
@@ -28,7 +29,8 @@ class StateStoreTests(unittest.TestCase):
                 state_file=state_path,
             )
             pipeline = PlacementPipeline(settings)
-            self.assertEqual(pipeline.run(dry_run=True), [])
+            with patch("sentinel.gmail_service.GmailService.fetch_recent_messages", return_value=[]):
+                self.assertEqual(pipeline.run(dry_run=True), [])
 
 
 if __name__ == "__main__":
